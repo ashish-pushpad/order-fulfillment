@@ -40,40 +40,37 @@ func main() {
 	httpHandler := internal.NewHandler(service)
 	
 	// inventoriesGroup := api.Group("/inventories")
-
-	
-
 	internal.RegisterRoutes(api,httpHandler)
 
-	grpcHandler := grpc.NewServer(service)
+
+// Grpc Server Start here
+	grpcHandler := grpc.NewServer(service)// all service provide to the handler so can user by handler 
+
+	grpcSrv:=grpcServer.NewServer()
+	pb.RegisterInventoryServiceServer(// 
+		grpcSrv,
+		grpcHandler,
+	)
 
 
+	lis, err := net.Listen("tcp", ":50051")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-		grpcSrv:=grpcServer.NewServer()
-		pb.RegisterInventoryServiceServer(
-    grpcSrv,
-    grpcHandler,
-)
+	go func ()  {
+		slog.Info("gRPC Server started", "address", ":50051")
 
-
-lis, err := net.Listen("tcp", ":50051")
-if err != nil {
-    log.Fatal(err)
-}
-
-go func ()  {
-	slog.Info("gRPC Server started", "address", ":50051")
-
-if err := grpcSrv.Serve(lis); err != nil {
-    log.Fatal(err)
-}
-}()
+	if err := grpcSrv.Serve(lis); err != nil {
+		log.Fatal(err)
+	}
+	}()
 
 
 	// r := router.NewRouter(db)
 	server := http.Server{
 		Addr:    cfg.Addr,
-		Handler: r,
+		Handler: r,// give the info about the router (handler have all the route and and service where to ridirect)
 	}
 
 	slog.Info("Server started", "address", cfg.Addr)
