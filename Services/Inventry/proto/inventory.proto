@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package inventory;
 
-option go_package = "inventory/proto/inventorypb";
+option go_package = "/proto/inventorypb";
 
 service InventoryService {
     rpc GetInventory(GetInventoryRequest) returns (GetInventoryResponse);
