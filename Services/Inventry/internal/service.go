@@ -68,21 +68,21 @@ func (s *Service) DeleteInventory(id int64) error {
 
 
 
-func (s *Service) ReserveStockTx(ctx context.Context, tx *sql.Tx,productID, warehouseID int64, qty int) error {
+func (s *Service) ReserveStock(ctx context.Context, productID, warehouseID int64, qty int) error {
 	if qty <= 0 {
 		return fmt.Errorf("quantity must be greater than zero")
 	}
 
-	return s.repo.ReserveStockTx(ctx , tx,productID, warehouseID, qty)
+	return s.repo.ReserveStock(ctx  ,productID, warehouseID, qty)
 }
 
-func (s *Service) ReleaseStockTx(ctx context.Context, tx *sql.Tx,productID, warehouseID int64, qty int) error {
+func (s *Service) ReleaseStock(ctx context.Context,productID, warehouseID int64, qty int) error {
 
 	if qty <= 0 {
 		return fmt.Errorf("quantity must be greater than zero")
 	}
 
-	return s.repo.ReleaseStockTx(ctx,tx,productID, warehouseID, qty)
+	return s.repo.ReleaseStockTx(ctx,productID, warehouseID, qty)
 }
 
 func (s *Service) CommitReservationTx(ctx context.Context, tx *sql.Tx,productID, warehouseID int64, qty int) error {

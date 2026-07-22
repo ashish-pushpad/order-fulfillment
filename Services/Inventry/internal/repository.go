@@ -5,8 +5,10 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	 "google.golang.org/grpc/codes"
-    "google.golang.org/grpc/status"
+	"log"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type Repository struct {
@@ -230,15 +232,14 @@ func (r *Repository) DeleteInventory(id int64) error {
 }
 
 // add the ttl so can expire it manually if there error happen
-func (r *Repository) ReserveStockTx(
+func (r *Repository) ReserveStock(
 	ctx context.Context,
-	tx *sql.Tx,
 	productID int64,
 	warehouseID int64,
 	qty int,
 ) error {
-
-	result, err :=tx.ExecContext(
+   log.Println("Call the reserve Stocke")
+	result, err :=r.db.ExecContext(
 		ctx,
 		`
 		UPDATE inventories
@@ -249,11 +250,13 @@ func (r *Repository) ReserveStockTx(
 	`, qty, productID, warehouseID)
 
 	if err != nil {
+		log.Println("error to reservestock",err)
 		return err
 	}
 
 	rows, err := result.RowsAffected()
 	if err != nil {
+		log.Printf("error to resevr stock",err)
 		return err
 	}
 
@@ -266,13 +269,12 @@ func (r *Repository) ReserveStockTx(
 
 func (r *Repository) ReleaseStockTx(
 	ctx context.Context,
-	tx *sql.Tx,
 	productID int64,
 	warehouseID int64,
 	qty int,
 ) error {
 
-	result, err := tx.ExecContext(
+	result, err := r.db.ExecContext(
 		ctx,
 		`
     UPDATE inventories
@@ -367,6 +369,7 @@ func (r *Repository) FindWarehouseForProduct(
 ) (int64, error) {
 
 	var warehouseID int64
+	log.Printf("product id %v and quentity %v",productID,qty)
 
 	err := r.db.QueryRowContext(
 		ctx,

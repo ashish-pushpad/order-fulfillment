@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,7 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	InventoryService_GetInventory_FullMethodName = "/inventory.InventoryService/GetInventory"
+	InventoryService_GetInventory_FullMethodName            = "/inventory.InventoryService/GetInventory"
+	InventoryService_FindWarehouseForProduct_FullMethodName = "/inventory.InventoryService/FindWarehouseForProduct"
+	InventoryService_ReserveStock_FullMethodName            = "/inventory.InventoryService/ReserveStock"
 )
 
 // InventoryServiceClient is the client API for InventoryService service.
@@ -27,6 +30,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InventoryServiceClient interface {
 	GetInventory(ctx context.Context, in *GetInventoryRequest, opts ...grpc.CallOption) (*GetInventoryResponse, error)
+	FindWarehouseForProduct(ctx context.Context, in *FindWarehouseForProductRequest, opts ...grpc.CallOption) (*FindWarehouseForProductResponse, error)
+	ReserveStock(ctx context.Context, in *ReserveStockRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type inventoryServiceClient struct {
@@ -47,11 +52,33 @@ func (c *inventoryServiceClient) GetInventory(ctx context.Context, in *GetInvent
 	return out, nil
 }
 
+func (c *inventoryServiceClient) FindWarehouseForProduct(ctx context.Context, in *FindWarehouseForProductRequest, opts ...grpc.CallOption) (*FindWarehouseForProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindWarehouseForProductResponse)
+	err := c.cc.Invoke(ctx, InventoryService_FindWarehouseForProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *inventoryServiceClient) ReserveStock(ctx context.Context, in *ReserveStockRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, InventoryService_ReserveStock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InventoryServiceServer is the server API for InventoryService service.
 // All implementations must embed UnimplementedInventoryServiceServer
 // for forward compatibility.
 type InventoryServiceServer interface {
 	GetInventory(context.Context, *GetInventoryRequest) (*GetInventoryResponse, error)
+	FindWarehouseForProduct(context.Context, *FindWarehouseForProductRequest) (*FindWarehouseForProductResponse, error)
+	ReserveStock(context.Context, *ReserveStockRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedInventoryServiceServer()
 }
 
@@ -64,6 +91,12 @@ type UnimplementedInventoryServiceServer struct{}
 
 func (UnimplementedInventoryServiceServer) GetInventory(context.Context, *GetInventoryRequest) (*GetInventoryResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetInventory not implemented")
+}
+func (UnimplementedInventoryServiceServer) FindWarehouseForProduct(context.Context, *FindWarehouseForProductRequest) (*FindWarehouseForProductResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method FindWarehouseForProduct not implemented")
+}
+func (UnimplementedInventoryServiceServer) ReserveStock(context.Context, *ReserveStockRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method ReserveStock not implemented")
 }
 func (UnimplementedInventoryServiceServer) mustEmbedUnimplementedInventoryServiceServer() {}
 func (UnimplementedInventoryServiceServer) testEmbeddedByValue()                          {}
@@ -104,6 +137,42 @@ func _InventoryService_GetInventory_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InventoryService_FindWarehouseForProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindWarehouseForProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServiceServer).FindWarehouseForProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InventoryService_FindWarehouseForProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServiceServer).FindWarehouseForProduct(ctx, req.(*FindWarehouseForProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InventoryService_ReserveStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReserveStockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServiceServer).ReserveStock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InventoryService_ReserveStock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServiceServer).ReserveStock(ctx, req.(*ReserveStockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InventoryService_ServiceDesc is the grpc.ServiceDesc for InventoryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +183,14 @@ var InventoryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetInventory",
 			Handler:    _InventoryService_GetInventory_Handler,
+		},
+		{
+			MethodName: "FindWarehouseForProduct",
+			Handler:    _InventoryService_FindWarehouseForProduct_Handler,
+		},
+		{
+			MethodName: "ReserveStock",
+			Handler:    _InventoryService_ReserveStock_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
