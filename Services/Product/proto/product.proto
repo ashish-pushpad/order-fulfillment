@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto/productpb";
+
+service ProductService {
+    rpc IsExistProduct (IsExistProductRequest) returns (IsExistProductResponse);
+}
+
+message IsExistProductRequest {
+    int64 id = 1;
+}
+
+message IsExistProductResponse {
+    int64 id = 1;
+}

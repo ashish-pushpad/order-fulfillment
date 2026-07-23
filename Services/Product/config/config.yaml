@@ -1,0 +1,9 @@
+env: "dev"
+db_uri: "postgres://postgres:1234@localhost:5432/product.theapp"
+
+
+http_server: 
+  address: "localhost:3002"
+
+grpc_serv:
+  port: ":50052"
