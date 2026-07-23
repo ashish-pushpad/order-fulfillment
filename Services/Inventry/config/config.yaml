@@ -1,5 +1,0 @@
-env: "dev"
-db_uri: "postgres://postgres:1234@localhost:5432/inventory.theapp"
-
-http_server: 
-  address: "localhost:3001"

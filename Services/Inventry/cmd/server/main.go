@@ -42,26 +42,30 @@ func main() {
 	// inventoriesGroup := api.Group("/inventories")
 	internal.RegisterRoutes(api,httpHandler)
 
+	// Grpc Server Start here
+	grpcSrv:=grpcServer.NewServer()// start the server 
 
-// Grpc Server Start here
+
+	// get handler
 	grpcHandler := grpc.NewServer(service)// all service provide to the handler so can user by handler 
 
-	grpcSrv:=grpcServer.NewServer()
-	pb.RegisterInventoryServiceServer(// 
+
+	// regiter the handler to the server
+	pb.RegisterInventoryServiceServer(// handler provide to the server (like handler ) where it can call the methods
 		grpcSrv,
 		grpcHandler,
 	)
 
 
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp", ":50051")// make a port to listen on the 50051
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	go func ()  {
-		slog.Info("gRPC Server started", "address", ":50051")
+		slog.Info("gRPC Server started", "address", ":50051")// listent on the port 500051
 
-	if err := grpcSrv.Serve(lis); err != nil {
+	if err := grpcSrv.Serve(lis); err != nil {// server and list on the port 50051 
 		log.Fatal(err)
 	}
 	}()
