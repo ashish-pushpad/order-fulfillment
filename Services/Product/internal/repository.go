@@ -1,11 +1,16 @@
 package internal
 
 import (
+	"context"
 	"database/sql"
 	"errors"
 	"fmt"
 	"log/slog"
 )
+
+
+var  ErrProductNotFound = errors.New("product not found")
+
 
 type Repository struct {
 	db *sql.DB
@@ -16,6 +21,9 @@ func NewRepository(db *sql.DB) *Repository {
 		db: db,
 	}
 }
+
+
+
 
 func (r *Repository) CreateProduct(Product CreateProductBody) error {
 
@@ -177,4 +185,50 @@ func (r *Repository) IsExistProduct(id int64) ( int64, error) {
 	}
 
 	return productId, nil
+}
+
+func (r *Repository) GetProductsByIds (ctx context.Context,ids []int64) ([]GetProductsByIdsResponse,error){
+	rows,err:= r.db.QueryContext(ctx , `
+	SELECT id,name,description,img_url From products 
+	WHERE id = ANY($1)
+	`,ids)
+    defer rows.Close()
+	if err != nil {
+		return nil, err
+	}
+
+	var products []GetProductsByIdsResponse
+
+	for rows.Next() {
+		var product GetProductsByIdsResponse
+
+		err:= rows.Scan(&product.Id,&product.Name,&product.Description,&product.ImgUrl)
+
+		if  err != nil {
+			return nil, err
+		}
+		products = append(products, product)
+
+	}
+	return  products,nil
+}
+
+func (r *Repository) GetProductPriceById (ctx context.Context,id int64 ) (GetProductPriceByIdResponse ,error){
+	var product GetProductPriceByIdResponse
+	row:= r.db.QueryRowContext(ctx , `
+	SELECT id,price From products 
+	WHERE id = $1
+	`,id)
+ 
+		err:= row.Scan(&product.Id,&product.Price)
+
+		if err != nil {
+			if errors.Is(err, sql.ErrNoRows) {
+				return GetProductPriceByIdResponse{}, ErrProductNotFound
+			}
+			return GetProductPriceByIdResponse{}, err
+		}
+
+	
+	return  product,nil
 }

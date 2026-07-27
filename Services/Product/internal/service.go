@@ -88,3 +88,23 @@ func (s *Service) IsExistProduct(ctx context.Context,id int64) (int64, error) {
 	}
 	return id, nil
 }
+
+
+// func (s *Service) GetProductPriceById (ctx context.Context , Ids []int64) ([]GetProductsByIdsResponse,error){
+// 	products,err:= s.repo.GetProductsByIds(ctx,Ids)
+	
+// 	if err!=nil {
+// 		return  nil,err
+// 	}
+// 	return  products,nil
+// }
+
+func (s *Service) GetProductPriceById (ctx context.Context, id int64)( GetProductPriceByIdResponse,error){
+	product,err:= s.repo.GetProductPriceById(ctx,id)
+	
+		
+	if err!=nil {
+		return  GetProductPriceByIdResponse{},err
+	}
+	return  product,nil
+}

@@ -9,6 +9,8 @@ type CreateProductBody struct{
 }
 
 
+
+
 type GetProductResponse struct {
 	Id int64 	`json:"id"`
 	Name string `json:"name" `
@@ -35,3 +37,17 @@ type  UpdateProductBodyRes struct{
 	Price float64 `json:"price" `
 	ImgUrl string `json:"img_url" `
 }
+
+
+type GetProductsByIdsResponse struct {
+	Id int64 	`json:"id"`
+	Name string `json:"name" `
+	Description string `json:"description" `
+	ImgUrl string `json:"img_url" `
+}
+
+
+type GetProductPriceByIdResponse struct {
+		Id int64  `json:"id"`
+		Price float64 `json:"price"`
+	}
