@@ -1,19 +1,19 @@
-package grpc
+package grpcclient
 
 import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	 pb "checkout/proto/orderpb"
+	 pb "order/proto/addresspb"
 )
 
-func NewOrderServiceClient() ( pb.OrderServiceClient,error) {
+func NewAddressServiceClient() ( pb.AddressServiceClient,error) {
 		conn,err:=grpc.NewClient(
-			"localhost:50054", 
+			"localhost:50057", 
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		)
 		if err!=nil {
 			return nil ,err
 		}
 
-		return pb.NewOrderServiceClient(conn),nil
+		return pb.NewAddressServiceClient(conn),nil
 }

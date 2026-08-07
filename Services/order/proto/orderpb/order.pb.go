@@ -26,7 +26,7 @@ type CreatOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	AddressId     int64                  `protobuf:"varint,2,opt,name=address_id,json=addressId,proto3" json:"address_id,omitempty"`
-	OrderNumber   int64                  `protobuf:"varint,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderNumber   string                 `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	Subtotal      float32                `protobuf:"fixed32,4,opt,name=subtotal,proto3" json:"subtotal,omitempty"`
 	Shipping      float32                `protobuf:"fixed32,5,opt,name=shipping,proto3" json:"shipping,omitempty"`
 	Tax           float32                `protobuf:"fixed32,6,opt,name=tax,proto3" json:"tax,omitempty"`
@@ -80,11 +80,11 @@ func (x *CreatOrderRequest) GetAddressId() int64 {
 	return 0
 }
 
-func (x *CreatOrderRequest) GetOrderNumber() int64 {
+func (x *CreatOrderRequest) GetOrderNumber() string {
 	if x != nil {
 		return x.OrderNumber
 	}
-	return 0
+	return ""
 }
 
 func (x *CreatOrderRequest) GetSubtotal() float32 {
@@ -212,8 +212,8 @@ type CreateOrderItemRequest struct {
 	ProductId     int64                  `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
 	WarehouseId   int64                  `protobuf:"varint,3,opt,name=warehouse_id,json=warehouseId,proto3" json:"warehouse_id,omitempty"`
 	Quantity      int64                  `protobuf:"varint,4,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	UnitPrice     int64                  `protobuf:"varint,5,opt,name=unitPrice,proto3" json:"unitPrice,omitempty"`
-	TotalPrice    int64                  `protobuf:"varint,6,opt,name=total_price,json=totalPrice,proto3" json:"total_price,omitempty"`
+	UnitPrice     float32                `protobuf:"fixed32,5,opt,name=unitPrice,proto3" json:"unitPrice,omitempty"`
+	TotalPrice    float32                `protobuf:"fixed32,6,opt,name=total_price,json=totalPrice,proto3" json:"total_price,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -276,14 +276,14 @@ func (x *CreateOrderItemRequest) GetQuantity() int64 {
 	return 0
 }
 
-func (x *CreateOrderItemRequest) GetUnitPrice() int64 {
+func (x *CreateOrderItemRequest) GetUnitPrice() float32 {
 	if x != nil {
 		return x.UnitPrice
 	}
 	return 0
 }
 
-func (x *CreateOrderItemRequest) GetTotalPrice() int64 {
+func (x *CreateOrderItemRequest) GetTotalPrice() float32 {
 	if x != nil {
 		return x.TotalPrice
 	}
@@ -299,7 +299,7 @@ const file_proto_order_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x1d\n" +
 	"\n" +
 	"address_id\x18\x02 \x01(\x03R\taddressId\x12!\n" +
-	"\forder_number\x18\x03 \x01(\x03R\vorderNumber\x12\x1a\n" +
+	"\forder_number\x18\x03 \x01(\tR\vorderNumber\x12\x1a\n" +
 	"\bsubtotal\x18\x04 \x01(\x02R\bsubtotal\x12\x1a\n" +
 	"\bshipping\x18\x05 \x01(\x02R\bshipping\x12\x10\n" +
 	"\x03tax\x18\x06 \x01(\x02R\x03tax\x12\x1a\n" +
@@ -318,8 +318,8 @@ const file_proto_order_proto_rawDesc = "" +
 	"product_id\x18\x02 \x01(\x03R\tproductId\x12!\n" +
 	"\fwarehouse_id\x18\x03 \x01(\x03R\vwarehouseId\x12\x1a\n" +
 	"\bquantity\x18\x04 \x01(\x03R\bquantity\x12\x1c\n" +
-	"\tunitPrice\x18\x05 \x01(\x03R\tunitPrice\x12\x1f\n" +
-	"\vtotal_price\x18\x06 \x01(\x03R\n" +
+	"\tunitPrice\x18\x05 \x01(\x02R\tunitPrice\x12\x1f\n" +
+	"\vtotal_price\x18\x06 \x01(\x02R\n" +
 	"totalPrice2\x9c\x01\n" +
 	"\fOrderService\x12B\n" +
 	"\vCreateOrder\x12\x18.proto.CreatOrderRequest\x1a\x19.proto.CreatOrderResponse\x12H\n" +

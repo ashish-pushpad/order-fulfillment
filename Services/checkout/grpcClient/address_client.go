@@ -8,7 +8,7 @@ import (
 
 func NewAddressServiceClient() ( pb.AddressServiceClient,error) {
 		conn,err:=grpc.NewClient(
-			"localhost:50053", 
+			"localhost:50057", 
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		)
 		if err!=nil {

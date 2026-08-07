@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log/slog"
 	"address/internal/config"
+	_"github.com/jackc/pgx/v5/stdlib"
 )
 
 func ConnectDb(cfg config.Config)(*sql.DB,error) {

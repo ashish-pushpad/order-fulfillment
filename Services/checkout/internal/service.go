@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"strconv"
+	// "strconv"
 	"time"
 
 	"checkout/utils"
@@ -106,11 +106,11 @@ func (s *Service) createPendingOrder(
 	total = subtotal + shipping + tax - discount
 
 	orderNumber = generateOrderNumber()
-	parsedOrderNumber, err := strconv.ParseInt(orderNumber, 10, 64)
-	if err != nil {
-		log.Println("error to conver the orderNumber in int64",err)
-		return 0, "", 0, 0, 0, 0, err
-	}
+	// parsedOrderNumber, err := strconv.ParseInt(orderNumber, 10, 64)
+	// if err != nil {
+	// 	log.Println("error to conver the orderNumber in int64",err)
+	// 	return 0, "", 0, 0, 0, 0, err
+	// }
 
 
 	resp, err := s.orderService.CreateOrder(
@@ -118,7 +118,7 @@ func (s *Service) createPendingOrder(
 		&order.CreatOrderRequest{
 			UserId:userID,
 			AddressId: addressID,
-			OrderNumber: parsedOrderNumber,
+			OrderNumber: orderNumber,
 			Subtotal: float32(subtotal),
 			Shipping: float32(shipping),
 			Tax: float32(tax),

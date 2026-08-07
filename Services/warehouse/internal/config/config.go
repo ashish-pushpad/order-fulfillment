@@ -29,7 +29,7 @@ func MustLoad() Config{
 	configPath=os.Getenv("CONFIG_PATH")
 
 	if configPath ==""{
-		flags := flag.String("cart-config","","config path")
+		flags := flag.String("warehouse-config","","config path")
 		flag.Parse()
 		configPath =*flags
 

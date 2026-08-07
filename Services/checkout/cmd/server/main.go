@@ -6,15 +6,15 @@ import (
 	grpcclients "checkout/grpcClient"
 	"context"
 	"log"
-	"net"
+	// "net"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 	"github.com/gin-gonic/gin"
-	"google.golang.org/grpc"
-	pb "checkout/proto/addresspb"
+	// "google.golang.org/grpc"
+	// pb "checkout/proto/checkoutpb"
 	"checkout/internal"
 )
 
@@ -48,36 +48,36 @@ func main(){
 
 	)
 	handler:=internal.NewHandler(service)
-	grpcHandler :=internal.NewGrpcHandler(service)
+	// grpcHandler :=internal.NewGrpcHandler(service)
     // log.Print(grpcHandler)
 	app:=gin.Default()
 
-	cartRoute:=app.Group("/cart")
+	cartRoute:=app.Group("/checkout")
 	internal.RegisterRoutes(cartRoute,handler)
 	
 
 
-	grpcServ:= grpc.NewServer()
+	// grpcServ:= grpc.NewServer()
 	
-	pb.RegisterAddressServiceServer(
-		grpcServ,
-		grpcHandler,
-	)
+	// pb.RegisterAddressServiceServer(
+	// 	grpcServ,
+	// 	grpcHandler,
+	// )
 	
 
-	lis,err := net.Listen("tcp",cfg.GrpcServ.Port)
+	// lis,err := net.Listen("tcp",cfg.GrpcServ.Port)
 
 	if err !=nil {
 		log.Fatal("Error to net listen fail ",err)
 	}
 
-	go func (){
-		log.Println("Product Grpc server starat on the port",cfg.Port)
-		err:= grpcServ.Serve(lis)
-		if err!=nil {
-			log.Fatal("Error to start the grpcSercver",err)
-		}
-	}()
+	// go func (){
+	// 	log.Println("Product Grpc server starat on the port",cfg.Port)
+	// 	err:= grpcServ.Serve(lis)
+	// 	if err!=nil {
+	// 		log.Fatal("Error to start the grpcSercver",err)
+	// 	}
+	// }()
 
 
 	serv:=http.Server{

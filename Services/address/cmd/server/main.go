@@ -47,7 +47,7 @@ func main(){
     // log.Print(grpcHandler)
 	app:=gin.Default()
 
-	cartRoute:=app.Group("/cart")
+	cartRoute:=app.Group("/address")
 	internal.RegisterRoutes(cartRoute,handler)
 	
 

@@ -10,7 +10,7 @@ import (
 
 func NewUserServiceClient()(pb.UserServiceClient ,error) {
 	conn,err:=grpc.NewClient(
-		"localhost:50054", 
+		"localhost:50055", 
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 	if err!=nil {

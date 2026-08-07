@@ -8,7 +8,7 @@ import (
 
 func NewCartServiceClient() ( pb.CartServiceClient,error) {
 		conn,err:=grpc.NewClient(
-			"localhost:50053", 
+			"localhost:50056", 
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		)
 		if err!=nil {
