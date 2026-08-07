@@ -2,9 +2,10 @@ package main
 
 import (
 	"address/database/postgre"
-	"address/internal/config"
 	grpcclients "address/grpcClient"
 	"address/internal"
+	"address/internal/config"
+	pb "address/proto/addresspb"
 	"context"
 	"log"
 	"net"
@@ -13,14 +14,18 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
-	pb "address/proto/addresspb"
 )
 
 // main server and then grpc server
 func main(){
-
+	err:=godotenv.Load()
+	if err != nil {
+		log.Println("Error to load the env",err)
+	}
 	cfg:=config.MustLoad()
 
 	db,err:=postgre.ConnectDb(cfg)
