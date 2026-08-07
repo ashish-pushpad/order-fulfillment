@@ -1,9 +1,6 @@
 package main
 
 import (
-	"warehouse/database/postgre"
-	"warehouse/internal/config"
-	"warehouse/internal"
 	"context"
 	"log"
 	"net"
@@ -12,14 +9,22 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-	"github.com/gin-gonic/gin"
-	"google.golang.org/grpc"
+	"warehouse/database/postgre"
+	"warehouse/internal"
+	"warehouse/internal/config"
 	pb "warehouse/proto/warehousepb"
+
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"google.golang.org/grpc"
 )
 
 // main server and then grpc server
 func main(){
-
+	err:=godotenv.Load()
+	if err!=nil {
+		log.Println("error to load the env file",err)
+	}
 	cfg:=config.MustLoad()
 
 	db,err:=postgre.ConnectDb(cfg)
