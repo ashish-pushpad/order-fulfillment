@@ -35,7 +35,7 @@ func main(){
 	}
     defer db.Close()
 
-	userGrpcClient,err:= grpcclients.NewUserGrpcClient()
+	userGrpcClient,err:= grpcclients.NewUserGrpcClient(cfg)
 	// productGrpcClient,err:= grpcclients.NewProductGrpcClient()
 
 

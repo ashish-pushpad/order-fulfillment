@@ -17,10 +17,17 @@ type GrpcServ struct {
 }
 
 
+
+type GrpcClient struct {
+	UserClient  string `yaml:"user_client" env-required:"true"`
+}
+
+
 type Config struct {
 	DB string `yaml:"db"  env-required:"true"`
 	HttpServer `yaml:"http_server"`
 	GrpcServ 	`yaml:"grpc_serv"`
+	GrpcClient 	`yaml:"grpc_client"`
 }
 
 func MustLoad() Config{

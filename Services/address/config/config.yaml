@@ -7,3 +7,6 @@ http_server:
 
 grpc_serv:
   port: ":50057"
+
+grpc_client:
+  user_client:"user:50055"

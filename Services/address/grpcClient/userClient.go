@@ -1,15 +1,17 @@
 package grpcclient
 
 import (
-	"log"
+	"address/internal/config"
 	user "address/proto/userpb"
+	"log"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func NewUserGrpcClient() (user.UserServiceClient,error) {
+func NewUserGrpcClient(cfg config.Config) (user.UserServiceClient,error) {
 	conn,err:=grpc.NewClient(
-		"localhost:50055",
+		cfg.GrpcClient.UserClient,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 
