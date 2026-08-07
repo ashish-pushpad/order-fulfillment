@@ -3,13 +3,14 @@ package database
 import (
 	"database/sql"
 	"log"
+	"os"
 	"user/internal/config"
 
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 func ConnectDb( cfg config.Config) *sql.DB {
-	db ,err:= sql.Open("pgx",cfg.DB_URI)
+	db ,err:= sql.Open(cfg.DB,os.Getenv("DB_URI"))
 
 	if err!= nil {
 		log.Fatal("Error to connect the db ",err)

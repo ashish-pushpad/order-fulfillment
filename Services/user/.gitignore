@@ -1,0 +1,127 @@
+# ==========================
+# Go
+# ==========================
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.coverprofile
+coverage.out
+coverage.html
+
+# Build directories
+bin/
+build/
+dist/
+
+# ==========================
+# Go Workspace
+# ==========================
+vendor/
+
+# Uncomment if you don't want to commit workspace file
+# go.work
+# go.work.sum
+
+# ==========================
+# Environment
+# ==========================
+.env
+.env.*
+!.env.example
+/config
+
+# ==========================
+# Logs
+# ==========================
+*.log
+logs/
+*.pid
+
+# ==========================
+# Database
+# ==========================
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL data (if local)
+postgres_data/
+pgdata/
+
+# ==========================
+# Temporary Files
+# ==========================
+tmp/
+temp/
+*.tmp
+*.cache
+
+# ==========================
+# IDE
+# ==========================
+.vscode/
+.idea/
+*.iml
+
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==========================
+# Testing
+# ==========================
+coverage/
+.coverage
+test-results/
+
+# ==========================
+# Generated GraphQL (optional)
+# Ignore ONLY if you regenerate them.
+# Otherwise commit them.
+# ==========================
+# graph/generated.go
+# graph/model/models_gen.go
+
+# ==========================
+# Generated gRPC (optional)
+# Usually these SHOULD be committed.
+# Uncomment only if your team regenerates them every build.
+# ==========================
+# **/*.pb.go
+# **/*_grpc.pb.go
+
+# ==========================
+# Docker
+# ==========================
+docker-compose.override.yml
+
+# ==========================
+# Air (Hot Reload)
+# ==========================
+.air/
+.air.toml
+
+# ==========================
+# Delve Debugger
+# ==========================
+__debug_bin
+
+# ==========================
+# Swagger
+# Uncomment if generated automatically
+# ==========================
+# docs/
+
+# ==========================
+# Misc
+# ==========================
+*.bak
+*.swp
+*.swo

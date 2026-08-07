@@ -1,9 +1,8 @@
 env: "dev"
-db_uri: "postgres://postgres:1234@localhost:5432/user.theapp"
-
+db : "pgx"
         
 http_server: 
-  address: "localhost:3005"
+  address: ":3005"
 
 grpc_serv:
   port: ":50055"

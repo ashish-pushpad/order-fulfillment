@@ -1,8 +1,6 @@
 package main
 
 import (
-	"user/database"
-	"user/internal/config"
 	"context"
 	"log"
 	"net"
@@ -11,10 +9,13 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"user/database"
+	"user/internal/config"
 
 	"user/internal"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 
 	pb "user/proto/userpb"
@@ -22,6 +23,11 @@ import (
 
 // main server and then grpc server
 func main(){
+
+	err:=godotenv.Load()
+	if err!=nil {
+		log.Println("fail to load the env ",err)
+	}
 
 	cfg:=config.MustLoad()
 
