@@ -11,6 +11,7 @@ import (
 	"product/internal/config"
 	"syscall"
 	"time"
+	"github.com/joho/godotenv"
 
 	"product/internal"
 
@@ -24,7 +25,10 @@ import (
 
 // main server and then grpc server
 func main(){
-
+	err:=godotenv.Load()
+	if err!=nil {
+		log.Println("Error to load the env",err)
+	}
 	cfg:=config.MustLoad()
 
 	db:=database.ConnectDb(cfg)
