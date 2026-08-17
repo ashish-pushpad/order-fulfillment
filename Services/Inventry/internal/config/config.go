@@ -12,10 +12,21 @@ type HttpServer struct {
 	Addr string `yaml:"address" env-required:"true"`
 }
 
+type GrpcServ struct {
+	Port string `yaml:"port" env-required:"true"`
+}
+
+type GrpcClient struct {
+	ProductClient  string `yaml:"product_client" env-required:"true"`
+	WarehouseClient string  `yaml:"warehouse_client" env-required:"true"`
+}
+
 type Config struct {
 	Env        string `yaml:"env" env:"ENV" env-require:"true"` // this are the struct tag that will tell to the cleanenv that what will be the name in the yml or env
-	DbUri      string `yaml:"db_uri" env:"DB_URI" env-require:"true"`
+	Db     	   string `yaml:"db" env:"DB" env-require:"true"`
 	HttpServer `yaml:"http_server"`
+	GrpcServ 	`yaml:"grpc_serv"`
+	GrpcClient 	`yaml:"grpc_client"`
 }
 
 func MustLoad() Config {

@@ -256,7 +256,7 @@ func (r *Repository) ReserveStock(
 
 	rows, err := result.RowsAffected()
 	if err != nil {
-		log.Printf("error to resevr stock",err)
+		log.Printf("error to resevr stock %v" ,err)
 		return err
 	}
 

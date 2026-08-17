@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package="proto/warehousepb";
+
+
+
+service WarehouseProto {
+   rpc  GetWarehouse ( GetWarehouseRequest) returns (GetWarehouseResponse);
+}
+
+
+message GetWarehouseRequest {
+    int64  id=1;
+}
+
+
+message GetWarehouseResponse{
+    int64 	id=1;
+	string name=2;
+	string city=3;
+	string addressd=4;
+}

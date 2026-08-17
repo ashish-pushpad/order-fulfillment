@@ -4,25 +4,57 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	product "inventory/proto/productpb"
+	warehouse "inventory/proto/warehousepb"
+
+	"google.golang.org/grpc/status"
+	"google.golang.org/grpc/codes"
 )
 
 type Service struct {
 	repo *Repository
+	product product.ProductServiceClient 
+	warehouse warehouse.WarehouseProtoClient
 }
 
-func NewService(repo *Repository) *Service {
+func NewService(repo *Repository,product product.ProductServiceClient,warehouse warehouse.WarehouseProtoClient ) *Service {
 	return &Service{
 		repo: repo,
+		product: product,
+		warehouse: warehouse,
 	}
 }
  
 
-func (s *Service) CreateInventory(body CreateInventoryBody) error {
+func (s *Service) CreateInventory(ctx context.Context,body CreateInventoryBody) error {
 
 	// Future business logic:
 	// - Check if product exists
 	// - Check if warehouse exists
 	// - Prevent duplicate inventory
+	_, err := s.product.IsExistProduct(ctx, &product.IsExistProductRequest{
+    Id: body.ProductID,
+})
+
+if err != nil {
+    if status.Code(err) == codes.Unavailable {
+        return fmt.Errorf("product service unavailable: %w", err)
+    }
+
+    return fmt.Errorf("product validation failed: %w", err)
+}
+
+_, err = s.warehouse.GetWarehouse(ctx, &warehouse.GetWarehouseRequest{
+    Id: body.WarehouseID,
+})
+
+if err != nil {
+    if status.Code(err) == codes.Unavailable {
+        return fmt.Errorf("warehouse service unavailable: %w", err)
+    }
+
+    return fmt.Errorf("warehouse validation failed: %w", err)
+}
 
 	return s.repo.CreateInventory(body)
 }

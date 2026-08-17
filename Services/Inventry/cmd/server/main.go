@@ -8,6 +8,7 @@ import (
 	  "net"
 
     grpcServer "google.golang.org/grpc"
+	"inventory/grpcclients"
 
     pb "inventory/proto/inventorypb"
 	"log"
@@ -29,13 +30,26 @@ func main() {
 
 	defer db.Close()
 
+	productClient,err:=grpcclients.ConnectProductGrpc(cfg)
+	if err != nil {
+		log.Println("Error to conenct the ProductClient ",err)	
+	}
+	warehouClient,err:=grpcclients.ConnectWarehouseGrpc(cfg)
+	if err != nil {
+		log.Println("Error to conenct the warehosueClient ",err)	
+	}
+	
+
 	r:=gin.Default()
 	 
 	api:=r.Group("inventory/v1")
 
 	repo := internal.NewRepository(db)
 
-	service := internal.NewService(repo)
+	service := internal.NewService(repo,
+		productClient,
+		warehouClient,
+	)
 
 	httpHandler := internal.NewHandler(service)
 	

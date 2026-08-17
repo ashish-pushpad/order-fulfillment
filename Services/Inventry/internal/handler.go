@@ -34,7 +34,7 @@ func (h *Handler) CreateInventory(c *gin.Context) {
 		return
 	}
 
-	err := h.service.CreateInventory(req)
+	err := h.service.CreateInventory(c,req)
 	if err != nil {
 
 		c.JSON(http.StatusInternalServerError, gin.H{

@@ -2,14 +2,16 @@ package postgre
 
 import (
 	"database/sql"
-	"log/slog"
 	"inventory/internal/config"
-	_"github.com/jackc/pgx/v5/stdlib"
+	"log/slog"
+	"os"
+
+	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 func ConnectDb(cfg config.Config)(*sql.DB,error) {
 
-	db,err:= sql.Open("pgx",cfg.DbUri)
+	db,err:= sql.Open(cfg.Db,os.Getenv("DB_URI"))
 
 	if err != nil {
 		slog.Error("Error to connect the db ","error",err)
