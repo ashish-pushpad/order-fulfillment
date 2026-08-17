@@ -1,14 +1,16 @@
 package grpcclients
 
 import (
-    "google.golang.org/grpc"
-	 pb "cartservice/proto/productpb"
+	"cartservice/internal/config"
+	pb "cartservice/proto/productpb"
+
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func ConnectProductGrpc() (pb.ProductServiceClient,error) {
+func ConnectProductGrpc(cfg config.Config) (pb.ProductServiceClient,error) {
 	conn, err := grpc.NewClient(
-		"localhost:50052",
+		cfg.GrpcClient.ProductClient,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 

@@ -29,7 +29,7 @@ func main(){
 	db:=database.ConnectDb(cfg)
     defer db.Close()
 
-	productGrpcClient,err:= grpcclients.ConnectProductGrpc()
+	productGrpcClient,err:= grpcclients.ConnectProductGrpc(cfg)
 
 
 
