@@ -3,7 +3,13 @@ db_uri: "postgres://postgres:1234@localhost:5432/theapp"
 
 
 http_server: 
-  address: "localhost:3008"
+  checkout: "localhost:3008"
 
 grpc_serv:
   port: ":50053"
+
+grpc_client:
+  address_client:"address:50057"
+  cart_client:"cart:50056"
+  inventory_client:"inventory:50051"
+  order_client:"order:50054"

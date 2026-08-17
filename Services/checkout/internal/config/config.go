@@ -16,11 +16,19 @@ type GrpcServ struct {
 	Port string `yaml:"port" env-required:"true"`
 }
 
+type GrpcClient struct {
+	AddressClient string `yaml:"address_client" env-required:"true"`
+	CartClient string `yaml:"cart_client" env-required:"true" `
+	InventoryClient string `yaml:"inventory_client" env-required:"true" `
+	OrderClient string `yaml:"order_client" env-required:"true" `
+}
+
 
 type Config struct {
 	DB_URI string `yaml:"db_uri"  env-required:"true"`
 	HttpServer `yaml:"http_server"`
 	GrpcServ 	`yaml:"grpc_serv"`
+	GrpcClient 	`yaml:"grpc_client"`
 }
 
 func MustLoad() Config{

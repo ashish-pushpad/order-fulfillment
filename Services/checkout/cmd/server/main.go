@@ -30,10 +30,10 @@ func main(){
 	}
     defer db.Close()
 
-	addressGrpcClient,err:= grpcclients.NewAddressServiceClient()
-	cartGrpcClient,err:= grpcclients.NewCartServiceClient()
-	orederGrpcClint,err:=grpcclients.NewOrderServiceClient()
-	inventoryGrpcClint:=grpcclients.ConnectInventory()
+	addressGrpcClient,err:= grpcclients.NewAddressServiceClient(cfg)
+	cartGrpcClient,err:= grpcclients.NewCartServiceClient(cfg)
+	orederGrpcClint,err:=grpcclients.NewOrderServiceClient(cfg)
+	inventoryGrpcClint:=grpcclients.ConnectInventory(cfg)
 	
 
 

@@ -1,14 +1,16 @@
 package grpc
 
 import (
+	"checkout/internal/config"
+	pb "checkout/proto/orderpb"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	 pb "checkout/proto/orderpb"
 )
 
-func NewOrderServiceClient() ( pb.OrderServiceClient,error) {
+func NewOrderServiceClient(cfg config.Config) ( pb.OrderServiceClient,error) {
 		conn,err:=grpc.NewClient(
-			"localhost:50054", 
+			cfg.OrderClient, 
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		)
 		if err!=nil {

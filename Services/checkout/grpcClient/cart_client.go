@@ -1,14 +1,16 @@
 package grpc
 
 import (
+	"checkout/internal/config"
+	pb "checkout/proto/cartpb"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	 pb "checkout/proto/cartpb"
 )
 
-func NewCartServiceClient() ( pb.CartServiceClient,error) {
+func NewCartServiceClient(cfg config.Config) ( pb.CartServiceClient,error) {
 		conn,err:=grpc.NewClient(
-			"localhost:50056", 
+			cfg.CartClient, 
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		)
 		if err!=nil {

@@ -1,14 +1,16 @@
 package grpc
 
 import (
+	"checkout/internal/config"
+	pb "checkout/proto/addresspb"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	 pb "checkout/proto/addresspb"
 )
 
-func NewAddressServiceClient() ( pb.AddressServiceClient,error) {
+func NewAddressServiceClient(cfg config.Config) ( pb.AddressServiceClient,error) {
 		conn,err:=grpc.NewClient(
-			"localhost:50057", 
+			cfg.AddressClient, 
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		)
 		if err!=nil {
