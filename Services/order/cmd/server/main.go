@@ -2,7 +2,6 @@ package main
 
 import (
 	"order/database"
-	"order/config"
 	grpcclients "order/grpcClient"
 	"context"
 	"log"
@@ -22,13 +21,13 @@ import (
 // main server and then grpc server
 func main(){
 
-	cfg:=config.MustLoad()
+	cfg:= order.MustLoad()
 
 	db:=database.ConnectDb(cfg)
     defer db.Close()
 
-	userGrpcClient,err:= grpcclients.NewUserServiceClient()
-	productGrpcClient,err:= grpcclients.NewProductGrpcClient()
+	userGrpcClient,err:= grpcclients.NewUserServiceClient(cfg)
+	productGrpcClient,err:= grpcclients.NewProductGrpcClient(cfg)
 
 
 

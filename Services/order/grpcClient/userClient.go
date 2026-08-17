@@ -3,14 +3,14 @@ package grpcclient
 import (
 	"log"
 	pb "order/proto/userpb"
-
+	"order"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func NewUserServiceClient()(pb.UserServiceClient ,error) {
+func NewUserServiceClient(cfg order.Config)(pb.UserServiceClient ,error) {
 	conn,err:=grpc.NewClient(
-		"localhost:50055", 
+		cfg.UserClient, 
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 	if err!=nil {

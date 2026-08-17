@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"log"
 	pb "order/proto/orderpb"
-	"strconv"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -31,7 +30,7 @@ func (h *GrpcHandler) CreateOrder(ctx context.Context, req *pb.CreatOrderRequest
 		ctx , 
 		req.UserId , 
 		req.AddressId ,
-		strconv.FormatInt(req.OrderNumber,10) ,
+		req.OrderNumber,
 		float64( req.Subtotal ),
 		  float64(req.Shipping) ,
 		   float64(req.Tax) ,
