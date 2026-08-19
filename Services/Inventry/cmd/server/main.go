@@ -5,23 +5,25 @@ import (
 	"inventory/internal"
 	"inventory/internal/config"
 	"inventory/internal/grpc"
-	  "net"
+	"net"
 
-    grpcServer "google.golang.org/grpc"
-	"inventory/grpcclients"
+	"inventory/grpcClients"
 
-    pb "inventory/proto/inventorypb"
+	grpcServer "google.golang.org/grpc"
+
+	pb "inventory/proto/inventorypb"
 	"log"
 	"log/slog"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
 
 	cfg := config.MustLoad()
-
+	godotenv.Load()
 	db, err := postgre.ConnectDb(cfg)
 
 	if err != nil {

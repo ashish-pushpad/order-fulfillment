@@ -1,0 +1,100 @@
+services:
+
+
+  user:
+    image: user-service:latest
+    build: ./user
+
+    env_file:
+      - ./user/.env
+
+    volumes:
+      - ./user/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3005:3005"
+      - "50055:50055"
+  product:
+    image: product-service:latest
+    build: ./Product
+
+    env_file:
+      - ./Product/.env
+
+    volumes:
+      - ./Product/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3002:3002"
+      - "50052:50052"
+
+  cart:
+    image: cart-service:latest
+    build: ./Cart
+    env_file:
+      - ./Cart/.env
+
+    volumes:
+      - ./Cart/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3006:3006"
+      - "50056:50056"
+
+  inventory:
+    image: inventory-service:latest
+    build: ./Inventry
+    env_file:
+      - ./Inventry/.env
+
+    volumes:
+      - ./Inventry/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3001:3001"
+      - "50051:50051"
+
+  warehouse:
+    image: warehouse-service:latest
+    build: ./warehouse
+    env_file:
+      - ./warehouse/.env
+
+    volumes:
+      - ./warehouse/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3003:3003"
+      - "50053:50053"
+  
+  address:
+    image: address-service:latest
+    build: ./address
+    env_file:
+      - ./address/.env
+
+    volumes:
+      - ./address/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3007:3007"
+      - "50057:50057"
+
+  order:
+    image: order-service:latest
+    build: ./order
+    env_file:
+      - ./order/.env
+
+    volumes:
+      - ./order/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3004:3004"
+      - "50054:50054"
+    
+  chekcout:
+    image: chekcout-service:latest
+    build: ./checkout
+    env_file:
+      - ./checkout/.env
+
+    volumes:
+      - ./checkout/config/config.yaml:/app/config/config.yaml
+    ports:
+      - "3008:3008"
+      - "50058:50058"
+  

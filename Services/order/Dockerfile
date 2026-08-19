@@ -8,6 +8,6 @@ RUN go mod download
 
 COPY . . 
 
-RUN go build -o warehouse-service ./cmd/server
+RUN go build -o order-service ./cmd/server
 
-CMD ["./warehouse-service","--warehouse-config=config/config.yaml"]
+CMD ["./order-service","--order-config=config/config.yaml"]

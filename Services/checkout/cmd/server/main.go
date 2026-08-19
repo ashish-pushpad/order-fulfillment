@@ -1,7 +1,7 @@
 package main
 
 import (
-	"checkout/database/postgre"
+	// "checkout/database/postgre"
 	"checkout/internal/config"
 	grpcclients "checkout/grpcClient"
 	"context"
@@ -23,12 +23,12 @@ func main(){
 
 	cfg:=config.MustLoad()
 
-	db,err:=postgre.ConnectDb(cfg)
+	// db,err:=postgre.ConnectDb(cfg)
 
-	if err!=nil{
-		log.Fatal("Error to connec the db",err)
-	}
-    defer db.Close()
+	// if err!=nil{
+	// 	log.Fatal("Error to connec the db",err)
+	// }
+    // defer db.Close()
 
 	addressGrpcClient,err:= grpcclients.NewAddressServiceClient(cfg)
 	cartGrpcClient,err:= grpcclients.NewCartServiceClient(cfg)

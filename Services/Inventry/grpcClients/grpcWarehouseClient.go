@@ -10,7 +10,7 @@ import (
 
 func ConnectWarehouseGrpc(cfg config.Config) (pb.WarehouseProtoClient,error) {
 	conn, err := grpc.NewClient(
-		cfg.GrpcClient.ProductClient,
+		cfg.GrpcClient.WarehouseClient,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 

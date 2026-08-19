@@ -1,15 +1,15 @@
 env: "dev"
-db_uri: "postgres://postgres:1234@localhost:5432/theapp"
+db: "pgx"
 
 
 http_server: 
-  checkout: "localhost:3008"
+  address: ":3008"
 
 grpc_serv:
   port: ":50053"
 
 grpc_client:
-  address_client:"address:50057"
-  cart_client:"cart:50056"
-  inventory_client:"inventory:50051"
-  order_client:"order:50054"
+  address_client: "address:50057"
+  cart_client: "cart:50056"
+  inventory_client: "inventory:50051"
+  order_client: "order:50054"
