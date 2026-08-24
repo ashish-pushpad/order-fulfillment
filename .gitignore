@@ -32,7 +32,7 @@ vendor/
 .env
 .env.*
 !.env.example
-**/config/config.yaml
+/config
 
 # ==========================
 # Logs
@@ -95,7 +95,7 @@ test-results/
 # Uncomment only if your team regenerates them every build.
 # ==========================
 # **/*.pb.go
-# **/*_grpc.pb.go
+**/*config
 
 # ==========================
 # Docker
@@ -125,3 +125,6 @@ __debug_bin
 *.bak
 *.swp
 *.swo
+
+
+port.txt

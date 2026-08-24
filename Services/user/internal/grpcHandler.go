@@ -2,6 +2,7 @@ package internal
 
 import (
 	"context"
+	"log"
 	pb "user/proto/userpb"
 )
 
@@ -22,6 +23,7 @@ func (h *GrpchHandler) GetUserById(ctx context.Context,req *pb.GetUserByIdReques
 		user,err:=h.service.GetUser(ctx,req.Id)
 
 		if err!=nil {
+			log.Println("error to get the user ",err)
 			return  &pb.GetUserByIdResponse{},err
 		}
 		return  &pb.GetUserByIdResponse{
