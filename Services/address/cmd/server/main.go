@@ -5,7 +5,7 @@ import (
 	grpcclients "address/grpcClient"
 	"address/internal"
 	"address/internal/config"
-	pb "address/proto/addresspb"
+	pb "proto/address"
 	"context"
 	"log"
 	"net"

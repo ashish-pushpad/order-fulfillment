@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"checkout/internal/config"
-	pb "checkout/proto/inventorypb"
+	pb "proto/inventory"
 	"log"
 
 	"google.golang.org/grpc"

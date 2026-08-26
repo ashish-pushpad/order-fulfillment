@@ -18,7 +18,7 @@ import (
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 
-	pb "user/proto/userpb"
+	pb "proto/user"
 )
 
 // main server and then grpc server

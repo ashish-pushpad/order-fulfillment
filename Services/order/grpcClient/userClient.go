@@ -2,7 +2,7 @@ package grpcclient
 
 import (
 	"log"
-	pb "order/proto/userpb"
+	pb "proto/user"
 	"order"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"log"
-	pb "product/proto/productpb"
+	pb "proto/product"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	// "product/proto/productpb"

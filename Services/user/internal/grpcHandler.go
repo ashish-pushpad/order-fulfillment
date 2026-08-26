@@ -3,7 +3,7 @@ package internal
 import (
 	"context"
 	"log"
-	pb "user/proto/userpb"
+	pb "proto/user"
 )
 
 	type GrpchHandler struct {
@@ -32,3 +32,9 @@ func (h *GrpchHandler) GetUserById(ctx context.Context,req *pb.GetUserByIdReques
 			Email:user.Email,
 		},nil
 }
+
+// func CreateUser ( ctx context.Context,)
+
+//   rg.POST("/", h.CreateUser)
+//     rg.PUT("/:id",h.UpdateUser)
+//     rg.DELETE("/:id",h.DeleteUser)

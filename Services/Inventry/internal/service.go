@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	product "inventory/proto/productpb"
-	warehouse "inventory/proto/warehousepb"
+	product "proto/product"
+	warehouse "proto/warehouse"
 
 	"google.golang.org/grpc/status"
 	"google.golang.org/grpc/codes"

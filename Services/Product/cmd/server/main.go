@@ -18,7 +18,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 
-	pb "product/proto/productpb"
+	pb "proto/product"
 )
 
 

@@ -11,7 +11,7 @@ import (
 
 	grpcServer "google.golang.org/grpc"
 
-	pb "inventory/proto/inventorypb"
+	pb "proto/inventory"
 	"log"
 	"log/slog"
 	"net/http"

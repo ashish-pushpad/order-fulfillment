@@ -12,7 +12,7 @@ import (
 	"warehouse/database/postgre"
 	"warehouse/internal"
 	"warehouse/internal/config"
-	pb "warehouse/proto/warehousepb"
+	pb "proto/warehouse"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"

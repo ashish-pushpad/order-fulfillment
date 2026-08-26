@@ -38,22 +38,22 @@ func (s *Service) GetUser(ctx context.Context,id int64) (GetUserResponse, error)
 	return user, nil
 }
 
-func (s *Service) UpdateUser(id int64, data UpdateUserBody) (User, error) {
+func (s *Service) UpdateUser(id int64, data UpdateUserBody) (UpdateUserResponse, error) {
 
 	user, err := s.repo.UpdateUser(id, data)
 
 	if err != nil {
-		return User{}, err
+		return UpdateUserResponse{}, err
 	}
 
 	return user, nil
 
 }
 
-func (s *Service) DeleteUser(id int64) (User, error) {
+func (s *Service) DeleteUser(id int64) (UserResponse, error) {
 	deletedUser, err := s.repo.DeleteUser(id)
 	if err != nil {
-		return User{}, err
+		return UserResponse{}, err
 	}
 
 	return deletedUser, nil

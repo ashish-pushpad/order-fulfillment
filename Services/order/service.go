@@ -5,8 +5,8 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	pb "order/proto/productpb"
-	userpb "order/proto/userpb"
+	pb "proto/product"
+	userpb "proto/user"
 )
 
 var (

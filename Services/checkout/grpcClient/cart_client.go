@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"checkout/internal/config"
-	pb "checkout/proto/cartpb"
+	pb "proto/cart"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

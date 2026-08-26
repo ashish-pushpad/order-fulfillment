@@ -1,7 +1,7 @@
 package internal
 
 import (
-	pb "address/proto/userpb"
+	pb "proto/user"
 	"context"
 	"errors"
 	"log"

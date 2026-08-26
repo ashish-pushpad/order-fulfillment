@@ -9,10 +9,10 @@ import (
 
 	"checkout/utils"
 
-	addressClient "checkout/proto/addresspb"
-	cartClient "checkout/proto/cartpb"
-	invetory "checkout/proto/inventorypb"
-	order "checkout/proto/orderpb"
+	addressClient "proto/address"
+	cartClient "proto/cart"
+	invetory "proto/inventory"
+	order "proto/order"
 )
 
 type Service struct {

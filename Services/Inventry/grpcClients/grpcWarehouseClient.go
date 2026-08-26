@@ -2,7 +2,7 @@ package grpcclients
 
 import (
 	"inventory/internal/config"
-	pb "inventory/proto/warehousepb"
+	pb "proto/warehouse"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

@@ -1,7 +1,7 @@
 package internal
 
 import (
-	pb "address/proto/addresspb"
+	pb "proto/address"
 	"context"
 )
 

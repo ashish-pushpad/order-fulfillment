@@ -4,7 +4,7 @@ import (
 	"context"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"inventory/internal"
-	pb "inventory/proto/inventorypb"
+	pb "proto/inventory"
 )
 
 type Server struct {

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package proto;
+import "google/protobuf/empty.proto";
+
+option go_package = "proto/inventorypb";
+
+service InventoryService {
+    rpc GetInventory(GetInventoryRequest) returns (GetInventoryResponse);
+    rpc FindWarehouseForProduct(FindWarehouseForProductRequest) returns (FindWarehouseForProductResponse);
+    rpc ReserveStock(ReserveStockRequest) returns (google.protobuf.Empty);
+}
+
+message GetInventoryRequest {
+    int64 product_id = 1;
+    int64 warehouse_id = 2;
+}
+
+message GetInventoryResponse {
+    int64 id = 1;
+    int64 product_id = 2;
+    int64 warehouse_id = 3;
+    int32 quantity = 4;
+}
+
+
+message FindWarehouseForProductRequest {
+    int64 product_id = 1;
+    int32 quantity = 2;
+}
+
+message FindWarehouseForProductResponse {
+    int64 warehouse_id = 1;
+}
+
+message ReserveStockRequest {
+    int64 product_id = 1;
+    int64 warehouse_id = 2;
+    int64 quantity = 3;
+}
+

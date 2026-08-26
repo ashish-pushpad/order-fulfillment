@@ -2,7 +2,7 @@ package grpcclient
 
 import (
 	"address/internal/config"
-	user "address/proto/userpb"
+	user "proto/user"
 	"log"
 
 	"google.golang.org/grpc"

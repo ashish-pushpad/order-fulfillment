@@ -1,7 +1,7 @@
 package internal
 
 import (
-	pb "cartservice/proto/cartpb"
+	pb "proto/cart"
 	"context"
 	"database/sql"
 	"log"

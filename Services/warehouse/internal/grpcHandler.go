@@ -1,7 +1,7 @@
 package internal
 
 import (
-	pb "warehouse/proto/warehousepb"
+	pb "proto/warehouse"
 	"context"
 	"database/sql"
 	"log"

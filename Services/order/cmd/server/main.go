@@ -15,7 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 
-	pb "order/proto/orderpb"
+	pb "proto/order"
 )
 
 // main server and then grpc server

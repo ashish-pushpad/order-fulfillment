@@ -18,7 +18,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 
-	pb "cartservice/proto/cartpb"
+	pb "proto/cart"
 )
 
 // main server and then grpc server

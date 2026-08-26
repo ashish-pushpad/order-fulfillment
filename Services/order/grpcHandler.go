@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"log"
-	pb "order/proto/orderpb"
+	pb "proto/order"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

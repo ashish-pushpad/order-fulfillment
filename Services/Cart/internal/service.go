@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"database/sql"
-	pb "cartservice/proto/productpb"
+	pb "proto/product"
 )
 
 var (
