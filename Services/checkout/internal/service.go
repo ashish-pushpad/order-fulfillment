@@ -210,9 +210,9 @@ func (s *Service) Checkout(
 	}
 
 	// tx, err := s.orderService.BeginTx(ctx)
-	if err != nil {
-		return CheckoutResponse{}, err
-	}
+	// if err != nil {
+	// 	return CheckoutResponse{}, err
+	// }
 
 	// defer func() {
 	// 	_ = s.orderService.Rollback(tx)

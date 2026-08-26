@@ -192,11 +192,12 @@ func (r *Repository) GetProductsByIds (ctx context.Context,ids []int64) ([]GetPr
 	SELECT id,name,description,img_url From products 
 	WHERE id = ANY($1)
 	`,ids)
-    defer rows.Close()
+
 	if err != nil {
 		return nil, err
 	}
 
+	defer rows.Close()
 	var products []GetProductsByIdsResponse
 
 	for rows.Next() {
@@ -210,6 +211,9 @@ func (r *Repository) GetProductsByIds (ctx context.Context,ids []int64) ([]GetPr
 		products = append(products, product)
 
 	}
+	if err := rows.Err(); err != nil {
+        return nil, err
+    }
 	return  products,nil
 }
 
