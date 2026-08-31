@@ -143,12 +143,12 @@ func (h *Handler) LoginUser(c *gin.Context) {
 	}
 	// authToken, err := h.service.LoginUser(loginDetails.Email, loginDetails.Password)
 	var authToken string
-	if err != nil {
-		slog.Error("Error to Login user ", "error ", err)
-		c.JSON(500, gin.H{
-			"message": err.Error(),
-		})
-	}
+	// if err != nil {
+	// 	slog.Error("Error to Login user ", "error ", err)
+	// 	c.JSON(500, gin.H{
+	// 		"message": err.Error(),
+	// 	})
+	// }
 	c.SetCookie(
 		"access_token", // Cookie name
 		authToken,      // Value
