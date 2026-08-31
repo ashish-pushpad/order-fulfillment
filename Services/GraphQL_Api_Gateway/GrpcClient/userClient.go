@@ -2,7 +2,7 @@ package grpcclient
 
 import (
 	"apigateway/internal/config"
-	user "apigateway/proto/userpb"
+	user "proto/user"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

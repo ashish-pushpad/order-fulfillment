@@ -17,9 +17,9 @@ func NewRepository(db *sql.DB) *Repository {
 	}
 }
 
-func (r *Repository) CreateUser(user CreateUserBody) error {
+func (r *Repository) CreateUser(ctx context.Context, user CreateUserBody) error {
 
-	_, err := r.db.Exec(`
+	_, err := r.db.ExecContext(ctx,`
 		INSERT INTO users(name,email,password_hash)
 		VALUES($1,$2,$3)
 	`, user.Name, user.Email, user.Password)
@@ -47,22 +47,23 @@ func (r *Repository) GetUser(ctx context.Context,id int64) (GetUserResponse, err
 }
 
 
-func (r *Repository) UpdateUser(id int64, user UpdateUserBody) (UpdateUserResponse, error) {
+func (r *Repository) UpdateUser(ctx context.Context, id int64, user UpdateUserBody) (UpdateUserResponse, error) {
 	var updatedUser UpdateUserResponse
 
-	err := r.db.QueryRow(`
+	err := r.db.QueryRowContext(
+		ctx,`
 		UPDATE users
 		SET
 			name = $1,
 			email = $2,
-			password = $3
+			password_hash = $3
 		WHERE id = $4
-		RETURNING id, name, email
+		RETURNING id, name, email,role
 	`, user.Name, user.Email, user.Password, id).Scan(
 		&updatedUser.ID,
 		&updatedUser.Name,
 		&updatedUser.Email,
-		&updatedUser.ID,
+		&updatedUser.Role,
 	)
     if errors.Is(err, sql.ErrNoRows) {
     return UpdateUserResponse{}, fmt.Errorf("user not found")
@@ -74,7 +75,7 @@ func (r *Repository) UpdateUser(id int64, user UpdateUserBody) (UpdateUserRespon
 	return updatedUser, nil
 }
 
-func (r *Repository) DeleteUser ( id int64) ( UserResponse,error){
+func (r *Repository) DeleteUser (ctx context.Context, id int64) ( UserResponse,error){
 		var deletedUser UserResponse
 		err := r.db.QueryRow(`
 		DELETE FROM users

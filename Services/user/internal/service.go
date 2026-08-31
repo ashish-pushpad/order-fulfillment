@@ -15,7 +15,7 @@ func NewService(repo *Repository) *Service {
 	}
 }
 
-func (s *Service) CreateUser(user CreateUserBody) error {
+func (s *Service) CreateUser(ctx context.Context,user CreateUserBody) error {
 
 	// Business rules
 
@@ -25,7 +25,7 @@ func (s *Service) CreateUser(user CreateUserBody) error {
 	// Hash password
 	// Send event
 
-	return s.repo.CreateUser(user)
+	return s.repo.CreateUser(ctx, user)
 }
 
 func (s *Service) GetUser(ctx context.Context,id int64) (GetUserResponse, error) {
@@ -38,9 +38,9 @@ func (s *Service) GetUser(ctx context.Context,id int64) (GetUserResponse, error)
 	return user, nil
 }
 
-func (s *Service) UpdateUser(id int64, data UpdateUserBody) (UpdateUserResponse, error) {
+func (s *Service) UpdateUser(ctx context.Context,id int64, data UpdateUserBody) (UpdateUserResponse, error) {
 
-	user, err := s.repo.UpdateUser(id, data)
+	user, err := s.repo.UpdateUser(ctx, id, data)
 
 	if err != nil {
 		return UpdateUserResponse{}, err
@@ -50,8 +50,8 @@ func (s *Service) UpdateUser(id int64, data UpdateUserBody) (UpdateUserResponse,
 
 }
 
-func (s *Service) DeleteUser(id int64) (UserResponse, error) {
-	deletedUser, err := s.repo.DeleteUser(id)
+func (s *Service) DeleteUser(ctx context.Context, id int64) (UserResponse, error) {
+	deletedUser, err := s.repo.DeleteUser(ctx,id)
 	if err != nil {
 		return UserResponse{}, err
 	}

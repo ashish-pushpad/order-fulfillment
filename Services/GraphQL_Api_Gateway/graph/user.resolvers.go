@@ -7,32 +7,104 @@ package graph
 
 import (
 	"apigateway/graph/model"
-	"apigateway/proto/userpb"
 	"context"
-	"fmt"
 	"log"
+	userpb "proto/user"
 	"strconv"
 )
 
 // CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
+	userData := userpb.UserData{
+		Name:     input.Name,
+		Email:    input.Email,
+		Password: input.PasswordHash,
+	}
+	role := "user"
+	id := "1"
+	userModel := &model.User{
+		ID:    id,
+		Name:  &userData.Name,
+		Email: &userData.Email,
+		Role:  &role,
+	}
+	_, err := r.UserClient.CreateUser(ctx, &userpb.CreateUserRequest{
+		User: &userData,
+	})
+	log.Println("error to connect the user ", err)
+	if err != nil {
+		return nil, err
+	}
+	return userModel, nil
+}
+
+// UpdateUser is the resolver for the updateUser field.
+func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input model.NewUser) (*model.User, error) {
+	parseId, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		log.Println("faile to parse the id")
+		return nil, err
+	}
+	log.Println("input data for update", input)
+	data := userpb.UserData{
+		Name:     input.Name,
+		Email:    input.Email,
+		Password: input.PasswordHash,
+	}
+	log.Println("user data for update ", data.Name)
+	rsp, err := r.UserClient.UpdateUser(ctx, &userpb.UpdateUserRequest{
+		Id:   parseId,
+		Data: &data,
+	})
+	if err != nil {
+		return nil, err
+	}
+	log.Println("updatedUser", rsp)
+	user := &model.User{
+		ID:    strconv.FormatInt(rsp.Id, 10),
+		Name:  &rsp.Name,
+		Email: &rsp.Email,
+		Role:  &rsp.Password,
+	}
+	return user, nil
+}
+
+// DeleteUser is the resolver for the deleteUser field.
+func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (*model.User, error) {
+	parsId, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		log.Print("error to parst the id in the delete user", err)
+		return nil, err
+
+	}
+	rsp, err := r.UserClient.DeleteUser(ctx, &userpb.DeleteUserRequest{
+		Id: parsId,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &model.User{
+		ID:    strconv.FormatInt(rsp.Id, 10),
+		Name:  &rsp.Name,
+		Email: &rsp.Email,
+		Role:  &rsp.Password,
+	}, nil
 }
 
 // GetUser is the resolver for the getUser field.
 func (r *queryResolver) GetUser(ctx context.Context, id string) (*model.User, error) {
 	userID, err := strconv.ParseInt(id, 10, 64)
 	if err != nil {
-		log.Println("Error in the conver the id ",err)
+		log.Println("Error in the conver the id ", err)
 		return nil, err
 	}
 	rsp, err := r.UserClient.GetUserById(ctx, &userpb.GetUserByIdRequest{
 		Id: userID,
 	})
 
-	if err!=nil {
-		log.Println("error to get the user ",err)
-		return  nil, err
+	if err != nil {
+		log.Println("error to get the user ", err)
+		return nil, err
 	}
 
 	return &model.User{

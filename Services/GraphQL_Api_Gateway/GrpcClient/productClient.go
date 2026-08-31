@@ -2,7 +2,7 @@ package grpcclient
 
 import (
 	config "apigateway/internal/config"
-	product "apigateway/proto/productpb"
+	product "proto/product"
 
 
 	"google.golang.org/grpc"

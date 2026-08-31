@@ -1,7 +1,7 @@
 package graph
 
 
-import "apigateway/proto/userpb"
+import "proto/user"
 
 // This file will not be regenerated automatically.
 //

@@ -11,10 +11,18 @@ input NewUser {
     password_hash: String!
 }
 
+input UpdateUserData{
+    name: String!
+    email: String!
+    password: String!
+}
+
 extend type Query {
     getUser(id: ID!): User!
 }
 
 extend type Mutation {
     createUser(input: NewUser!): User!
+    updateUser (id:ID!,input:NewUser!):User!
+    deleteUser (id:ID! ):User!
 }

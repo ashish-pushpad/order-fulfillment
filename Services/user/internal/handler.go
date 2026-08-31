@@ -27,7 +27,7 @@ func (h *Handler) CreateUser(c *gin.Context) {
 		})
 		return
 	}
-	err := h.service.CreateUser(req)
+	err := h.service.CreateUser(c,req)
 	if err != nil {
 		slog.Error("error to add the user ", "error", err)
 		c.JSON(500, gin.H{
@@ -95,7 +95,7 @@ func (h *Handler) UpdateUser(c *gin.Context) {
 		return
 	}
 
-	updatedUser, err := h.service.UpdateUser(id, data)
+	updatedUser, err := h.service.UpdateUser(c ,id, data)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -117,7 +117,7 @@ func (h *Handler) DeleteUser(c *gin.Context) {
 		return
 	}
 
-	deletedUser, err := h.service.DeleteUser(id)
+	deletedUser, err := h.service.DeleteUser(c,id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": err.Error(),

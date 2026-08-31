@@ -2,11 +2,17 @@ syntax = "proto3";
 
 package proto;
 
+import "google/protobuf/empty.proto";
+
 option go_package = "proto/userpb";
 
 
 service UserService{
     rpc GetUserById(GetUserByIdRequest) returns (GetUserByIdResponse);
+    rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+
 }
 
 
@@ -19,4 +25,38 @@ message GetUserByIdResponse{
     string name=2;
     string email = 3;
     string role = 4 ;
+}
+
+
+essage UserData {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message UpdateUserRequest {
+    int64 id = 1;
+    UserData data = 2;
+}
+
+message UpdateUserResponse {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+}
+
+message CreateUserRequest {
+    UserData user = 1;
+}
+
+message DeleteUserRequest {
+    int64 id = 1;
+}
+
+message DeleteUserResponse {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
 }
