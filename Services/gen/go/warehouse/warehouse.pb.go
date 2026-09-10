@@ -9,6 +9,7 @@ package warehousepb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -133,20 +134,282 @@ func (x *GetWarehouseResponse) GetAddressd() string {
 	return ""
 }
 
+type GetWarehousesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int64                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWarehousesRequest) Reset() {
+	*x = GetWarehousesRequest{}
+	mi := &file_warehouse_warehouse_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWarehousesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWarehousesRequest) ProtoMessage() {}
+
+func (x *GetWarehousesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_warehouse_warehouse_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWarehousesRequest.ProtoReflect.Descriptor instead.
+func (*GetWarehousesRequest) Descriptor() ([]byte, []int) {
+	return file_warehouse_warehouse_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetWarehousesRequest) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetWarehousesRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type GetWarehousesResponse struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Warehouses    []*GetWarehouseResponse `protobuf:"bytes,1,rep,name=warehouses,proto3" json:"warehouses,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWarehousesResponse) Reset() {
+	*x = GetWarehousesResponse{}
+	mi := &file_warehouse_warehouse_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWarehousesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWarehousesResponse) ProtoMessage() {}
+
+func (x *GetWarehousesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_warehouse_warehouse_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWarehousesResponse.ProtoReflect.Descriptor instead.
+func (*GetWarehousesResponse) Descriptor() ([]byte, []int) {
+	return file_warehouse_warehouse_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetWarehousesResponse) GetWarehouses() []*GetWarehouseResponse {
+	if x != nil {
+		return x.Warehouses
+	}
+	return nil
+}
+
+type CreateWarehouseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	City          string                 `protobuf:"bytes,2,opt,name=city,proto3" json:"city,omitempty"`
+	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateWarehouseRequest) Reset() {
+	*x = CreateWarehouseRequest{}
+	mi := &file_warehouse_warehouse_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateWarehouseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateWarehouseRequest) ProtoMessage() {}
+
+func (x *CreateWarehouseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_warehouse_warehouse_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateWarehouseRequest.ProtoReflect.Descriptor instead.
+func (*CreateWarehouseRequest) Descriptor() ([]byte, []int) {
+	return file_warehouse_warehouse_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CreateWarehouseRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateWarehouseRequest) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *CreateWarehouseRequest) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+type DeleteWarehouseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteWarehouseRequest) Reset() {
+	*x = DeleteWarehouseRequest{}
+	mi := &file_warehouse_warehouse_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteWarehouseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteWarehouseRequest) ProtoMessage() {}
+
+func (x *DeleteWarehouseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_warehouse_warehouse_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteWarehouseRequest.ProtoReflect.Descriptor instead.
+func (*DeleteWarehouseRequest) Descriptor() ([]byte, []int) {
+	return file_warehouse_warehouse_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteWarehouseRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type DeleteWarehouseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteWarehouseResponse) Reset() {
+	*x = DeleteWarehouseResponse{}
+	mi := &file_warehouse_warehouse_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteWarehouseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteWarehouseResponse) ProtoMessage() {}
+
+func (x *DeleteWarehouseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_warehouse_warehouse_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteWarehouseResponse.ProtoReflect.Descriptor instead.
+func (*DeleteWarehouseResponse) Descriptor() ([]byte, []int) {
+	return file_warehouse_warehouse_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeleteWarehouseResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 var File_warehouse_warehouse_proto protoreflect.FileDescriptor
 
 const file_warehouse_warehouse_proto_rawDesc = "" +
 	"\n" +
-	"\x19warehouse/warehouse.proto\x12\x05proto\"%\n" +
+	"\x19warehouse/warehouse.proto\x12\x05proto\x1a\x1bgoogle/protobuf/empty.proto\"%\n" +
 	"\x13GetWarehouseRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"j\n" +
 	"\x14GetWarehouseResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04city\x18\x03 \x01(\tR\x04city\x12\x1a\n" +
-	"\baddressd\x18\x04 \x01(\tR\baddressd2Y\n" +
+	"\baddressd\x18\x04 \x01(\tR\baddressd\"@\n" +
+	"\x14GetWarehousesRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\"T\n" +
+	"\x15GetWarehousesResponse\x12;\n" +
+	"\n" +
+	"warehouses\x18\x01 \x03(\v2\x1b.proto.GetWarehouseResponseR\n" +
+	"warehouses\"Z\n" +
+	"\x16CreateWarehouseRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04city\x18\x02 \x01(\tR\x04city\x12\x18\n" +
+	"\aaddress\x18\x03 \x01(\tR\aaddress\"(\n" +
+	"\x16DeleteWarehouseRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
+	"\x17DeleteWarehouseResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id2\xc1\x02\n" +
 	"\x0eWarehouseProto\x12G\n" +
-	"\fGetWarehouse\x12\x1a.proto.GetWarehouseRequest\x1a\x1b.proto.GetWarehouseResponseB\x13Z\x11proto/warehousepbb\x06proto3"
+	"\fGetWarehouse\x12\x1a.proto.GetWarehouseRequest\x1a\x1b.proto.GetWarehouseResponse\x12H\n" +
+	"\x0fCreateWarehouse\x12\x1d.proto.CreateWarehouseRequest\x1a\x16.google.protobuf.Empty\x12J\n" +
+	"\rGetWarehouses\x12\x1b.proto.GetWarehousesRequest\x1a\x1c.proto.GetWarehousesResponse\x12P\n" +
+	"\x0fDeleteWarehouse\x12\x1d.proto.DeleteWarehouseRequest\x1a\x1e.proto.DeleteWarehouseResponseB\x13Z\x11proto/warehousepbb\x06proto3"
 
 var (
 	file_warehouse_warehouse_proto_rawDescOnce sync.Once
@@ -160,19 +423,32 @@ func file_warehouse_warehouse_proto_rawDescGZIP() []byte {
 	return file_warehouse_warehouse_proto_rawDescData
 }
 
-var file_warehouse_warehouse_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_warehouse_warehouse_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_warehouse_warehouse_proto_goTypes = []any{
-	(*GetWarehouseRequest)(nil),  // 0: proto.GetWarehouseRequest
-	(*GetWarehouseResponse)(nil), // 1: proto.GetWarehouseResponse
+	(*GetWarehouseRequest)(nil),     // 0: proto.GetWarehouseRequest
+	(*GetWarehouseResponse)(nil),    // 1: proto.GetWarehouseResponse
+	(*GetWarehousesRequest)(nil),    // 2: proto.GetWarehousesRequest
+	(*GetWarehousesResponse)(nil),   // 3: proto.GetWarehousesResponse
+	(*CreateWarehouseRequest)(nil),  // 4: proto.CreateWarehouseRequest
+	(*DeleteWarehouseRequest)(nil),  // 5: proto.DeleteWarehouseRequest
+	(*DeleteWarehouseResponse)(nil), // 6: proto.DeleteWarehouseResponse
+	(*emptypb.Empty)(nil),           // 7: google.protobuf.Empty
 }
 var file_warehouse_warehouse_proto_depIdxs = []int32{
-	0, // 0: proto.WarehouseProto.GetWarehouse:input_type -> proto.GetWarehouseRequest
-	1, // 1: proto.WarehouseProto.GetWarehouse:output_type -> proto.GetWarehouseResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: proto.GetWarehousesResponse.warehouses:type_name -> proto.GetWarehouseResponse
+	0, // 1: proto.WarehouseProto.GetWarehouse:input_type -> proto.GetWarehouseRequest
+	4, // 2: proto.WarehouseProto.CreateWarehouse:input_type -> proto.CreateWarehouseRequest
+	2, // 3: proto.WarehouseProto.GetWarehouses:input_type -> proto.GetWarehousesRequest
+	5, // 4: proto.WarehouseProto.DeleteWarehouse:input_type -> proto.DeleteWarehouseRequest
+	1, // 5: proto.WarehouseProto.GetWarehouse:output_type -> proto.GetWarehouseResponse
+	7, // 6: proto.WarehouseProto.CreateWarehouse:output_type -> google.protobuf.Empty
+	3, // 7: proto.WarehouseProto.GetWarehouses:output_type -> proto.GetWarehousesResponse
+	6, // 8: proto.WarehouseProto.DeleteWarehouse:output_type -> proto.DeleteWarehouseResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_warehouse_warehouse_proto_init() }
@@ -186,7 +462,7 @@ func file_warehouse_warehouse_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_warehouse_warehouse_proto_rawDesc), len(file_warehouse_warehouse_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -136,6 +136,10 @@ func (r *Repository) DeleteWarehouse(id int64) (int64,error) {
 		WHERE id = $1
 	`, id)
 
+	if err != nil {
+        return 0, err
+    }
+
 
 	rowsAffected, err := result.RowsAffected()
 

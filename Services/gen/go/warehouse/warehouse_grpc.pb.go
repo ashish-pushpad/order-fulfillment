@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,7 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WarehouseProto_GetWarehouse_FullMethodName = "/proto.WarehouseProto/GetWarehouse"
+	WarehouseProto_GetWarehouse_FullMethodName    = "/proto.WarehouseProto/GetWarehouse"
+	WarehouseProto_CreateWarehouse_FullMethodName = "/proto.WarehouseProto/CreateWarehouse"
+	WarehouseProto_GetWarehouses_FullMethodName   = "/proto.WarehouseProto/GetWarehouses"
+	WarehouseProto_DeleteWarehouse_FullMethodName = "/proto.WarehouseProto/DeleteWarehouse"
 )
 
 // WarehouseProtoClient is the client API for WarehouseProto service.
@@ -27,6 +31,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WarehouseProtoClient interface {
 	GetWarehouse(ctx context.Context, in *GetWarehouseRequest, opts ...grpc.CallOption) (*GetWarehouseResponse, error)
+	CreateWarehouse(ctx context.Context, in *CreateWarehouseRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetWarehouses(ctx context.Context, in *GetWarehousesRequest, opts ...grpc.CallOption) (*GetWarehousesResponse, error)
+	DeleteWarehouse(ctx context.Context, in *DeleteWarehouseRequest, opts ...grpc.CallOption) (*DeleteWarehouseResponse, error)
 }
 
 type warehouseProtoClient struct {
@@ -47,11 +54,44 @@ func (c *warehouseProtoClient) GetWarehouse(ctx context.Context, in *GetWarehous
 	return out, nil
 }
 
+func (c *warehouseProtoClient) CreateWarehouse(ctx context.Context, in *CreateWarehouseRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, WarehouseProto_CreateWarehouse_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *warehouseProtoClient) GetWarehouses(ctx context.Context, in *GetWarehousesRequest, opts ...grpc.CallOption) (*GetWarehousesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWarehousesResponse)
+	err := c.cc.Invoke(ctx, WarehouseProto_GetWarehouses_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *warehouseProtoClient) DeleteWarehouse(ctx context.Context, in *DeleteWarehouseRequest, opts ...grpc.CallOption) (*DeleteWarehouseResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteWarehouseResponse)
+	err := c.cc.Invoke(ctx, WarehouseProto_DeleteWarehouse_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WarehouseProtoServer is the server API for WarehouseProto service.
 // All implementations must embed UnimplementedWarehouseProtoServer
 // for forward compatibility.
 type WarehouseProtoServer interface {
 	GetWarehouse(context.Context, *GetWarehouseRequest) (*GetWarehouseResponse, error)
+	CreateWarehouse(context.Context, *CreateWarehouseRequest) (*emptypb.Empty, error)
+	GetWarehouses(context.Context, *GetWarehousesRequest) (*GetWarehousesResponse, error)
+	DeleteWarehouse(context.Context, *DeleteWarehouseRequest) (*DeleteWarehouseResponse, error)
 	mustEmbedUnimplementedWarehouseProtoServer()
 }
 
@@ -64,6 +104,15 @@ type UnimplementedWarehouseProtoServer struct{}
 
 func (UnimplementedWarehouseProtoServer) GetWarehouse(context.Context, *GetWarehouseRequest) (*GetWarehouseResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetWarehouse not implemented")
+}
+func (UnimplementedWarehouseProtoServer) CreateWarehouse(context.Context, *CreateWarehouseRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateWarehouse not implemented")
+}
+func (UnimplementedWarehouseProtoServer) GetWarehouses(context.Context, *GetWarehousesRequest) (*GetWarehousesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetWarehouses not implemented")
+}
+func (UnimplementedWarehouseProtoServer) DeleteWarehouse(context.Context, *DeleteWarehouseRequest) (*DeleteWarehouseResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteWarehouse not implemented")
 }
 func (UnimplementedWarehouseProtoServer) mustEmbedUnimplementedWarehouseProtoServer() {}
 func (UnimplementedWarehouseProtoServer) testEmbeddedByValue()                        {}
@@ -104,6 +153,60 @@ func _WarehouseProto_GetWarehouse_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WarehouseProto_CreateWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateWarehouseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WarehouseProtoServer).CreateWarehouse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WarehouseProto_CreateWarehouse_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WarehouseProtoServer).CreateWarehouse(ctx, req.(*CreateWarehouseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WarehouseProto_GetWarehouses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWarehousesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WarehouseProtoServer).GetWarehouses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WarehouseProto_GetWarehouses_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WarehouseProtoServer).GetWarehouses(ctx, req.(*GetWarehousesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WarehouseProto_DeleteWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteWarehouseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WarehouseProtoServer).DeleteWarehouse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WarehouseProto_DeleteWarehouse_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WarehouseProtoServer).DeleteWarehouse(ctx, req.(*DeleteWarehouseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WarehouseProto_ServiceDesc is the grpc.ServiceDesc for WarehouseProto service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +217,18 @@ var WarehouseProto_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetWarehouse",
 			Handler:    _WarehouseProto_GetWarehouse_Handler,
+		},
+		{
+			MethodName: "CreateWarehouse",
+			Handler:    _WarehouseProto_CreateWarehouse_Handler,
+		},
+		{
+			MethodName: "GetWarehouses",
+			Handler:    _WarehouseProto_GetWarehouses_Handler,
+		},
+		{
+			MethodName: "DeleteWarehouse",
+			Handler:    _WarehouseProto_DeleteWarehouse_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

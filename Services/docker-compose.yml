@@ -3,7 +3,9 @@ services:
 
   user:
     image: user-service:latest
-    build: ./user
+    build: 
+      context: .
+      dockerfile: user/Dockerfile
 
     env_file:
       - ./user/.env
@@ -52,7 +54,9 @@ services:
 
   warehouse:
     image: warehouse-service:latest
-    build: ./warehouse
+    build:
+      context: .
+      dockerfile: warehouse/Dockerfile
     env_file:
       - ./warehouse/.env
 

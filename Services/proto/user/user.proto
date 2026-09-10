@@ -28,7 +28,7 @@ message GetUserByIdResponse{
 }
 
 
-essage UserData {
+message UserData {
     string name = 1;
     string email = 2;
     string password = 3;
