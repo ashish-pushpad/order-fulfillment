@@ -2,6 +2,10 @@
 
 package model
 
+import (
+	"time"
+)
+
 type Mutation struct {
 }
 
@@ -9,6 +13,12 @@ type NewUser struct {
 	Name         string `json:"name"`
 	Email        string `json:"email"`
 	PasswordHash string `json:"password_hash"`
+}
+
+type NewWarehouse struct {
+	Name    string `json:"name"`
+	City    string `json:"city"`
+	Address string `json:"address"`
 }
 
 type Query struct {
@@ -25,4 +35,13 @@ type User struct {
 	Name  *string `json:"name,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Role  *string `json:"role,omitempty"`
+}
+
+type Warehouse struct {
+	ID        string     `json:"id"`
+	Name      string     `json:"name"`
+	City      string     `json:"city"`
+	Address   string     `json:"address"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }

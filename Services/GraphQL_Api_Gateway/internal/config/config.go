@@ -16,7 +16,7 @@ type GrpcClient struct {
 	// InvetoryClient  string `yaml:"inventory_client" env-required:"true"`
 	// OrderClient  string `yaml:"order_client" env-required:"true"`
 	ProductClient  string `yaml:"product_client" env-required:"true"`
-	// WarehouseClient  string `yaml:"warehouse_client" env-required:"true"`
+	WarehouseClient  string `yaml:"warehouse_client" env-required:"true"`
 }
 
 type HttpServer struct {

@@ -28,6 +28,12 @@ func main(){
         log.Println("error to connect the userClient  ",err)
     }
 
+	// warehouseClient,err:= grpcclient.WarehouseClient(*cfg)
+
+	if err!=nil{
+		log.Println("Error to connece with warehouse clinent",err)
+	}
+
 	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
 		UserClient: userClient,
 	}}))

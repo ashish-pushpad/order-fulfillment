@@ -95,7 +95,7 @@ test-results/
 # Uncomment only if your team regenerates them every build.
 # ==========================
 # **/*.pb.go
-**/*config
+/Services/**/config.yaml
 
 # ==========================
 # Docker

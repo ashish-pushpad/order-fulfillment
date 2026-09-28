@@ -1,0 +1,30 @@
+scalar Time
+
+type Warehouse {
+    id: ID !
+    name: String !
+    city: String !
+    address: String !
+    createdAt: Time 
+    updatedAt: Time 
+}
+
+input NewWarehouse {
+    name: String!
+    city: String!
+    address: String!
+}
+
+extend type Query {
+    getWarehous (id: ID!): Warehouse!
+    getWarehouses: [Warehouse!]! 
+}
+
+extend type Mutation {
+    updateWarehouse(input:NewWarehouse!):Warehouse!
+    deleteWarehouse (id:ID!):ID!
+}
+
+
+
+
